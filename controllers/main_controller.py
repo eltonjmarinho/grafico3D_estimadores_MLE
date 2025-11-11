@@ -5,7 +5,7 @@ from views.plot_view import PlotView
 
 class MainController:
     """
-    Orquestra a interação entre o modelo e a visão.
+    Orquestra a interação entre o modelo e a visão para gerar e salvar os resultados.
     """
     def __init__(self):
         self.model = LikelihoodModel()
@@ -23,10 +23,11 @@ class MainController:
         """
         Executa o fluxo principal da aplicação:
         1. Configura os diretórios de saída.
-        2. Define a grade de parâmetros.
-        3. Calcula a log-verossimilhança.
-        4. Salva os dados da grade.
-        5. Solicita à visão que plote e salve os resultados.
+        2. Define a grade de parâmetros a serem analisados.
+        3. Calcula a log-verossimilhança para cada ponto na grade.
+        4. Salva os dados brutos da grade.
+        5. Gera e salva os gráficos estáticos (PNG).
+        6. Gera e salva um relatório HTML completo com gráficos interativos e estáticos.
         """
         self._setup_directories()
 
@@ -40,16 +41,16 @@ class MainController:
         # 3. Salva os dados da grade
         data_filepath = os.path.join(self.data_path, "likelihood_grid.npz")
         self.model.save_grid_data(data_filepath, B1, S2, LL)
-        print(f"Dados da grade salvos em: {data_filepath}")
 
-        # 4. Plota e salva os resultados
-        plot3d_path = os.path.join(self.plots_path, "log_likelihood_3d.png")
-        plot3d_interactive_path = os.path.join(self.plots_path, "log_likelihood_3d.html")
-        contour_path = os.path.join(self.plots_path, "log_likelihood_contour.png")
+        # 4. Define os caminhos para os arquivos de saída
+        static_3d_path = os.path.join(self.plots_path, "log_likelihood_3d.png")
+        static_contour_path = os.path.join(self.plots_path, "log_likelihood_contour.png")
+        html_report_path = os.path.join(self.plots_path, "relatorio_interativo.html")
+
+        # 5. Gera e salva os gráficos estáticos (PNG)
+        self.view.save_static_plots(B1, S2, LL, static_3d_path, static_contour_path)
+
+        # 6. Gera o relatório HTML completo
+        self.view.create_html_report(B1, S2, LL, html_report_path)
         
-        self.view.plot_3d_surface(B1, S2, LL, save_path=plot3d_path)
-        self.view.plot_3d_surface_interactive(B1, S2, LL, save_path=plot3d_interactive_path)
-        self.view.plot_2d_contour(B1, S2, LL, save_path=contour_path)
-
-        # 5. Exibe os gráficos do Matplotlib
-        self.view.show_plots()
+        print("\nProcesso concluído com sucesso!")

@@ -22,3 +22,6 @@ dist/
 *.ntvs*
 *.njsproj
 *.sln
+
+# Arquivos gerados pela aplicação
+results/
