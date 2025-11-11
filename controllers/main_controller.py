@@ -44,7 +44,12 @@ class MainController:
 
         # 4. Plota e salva os resultados
         plot3d_path = os.path.join(self.plots_path, "log_likelihood_3d.png")
+        plot3d_interactive_path = os.path.join(self.plots_path, "log_likelihood_3d.html")
         contour_path = os.path.join(self.plots_path, "log_likelihood_contour.png")
         
         self.view.plot_3d_surface(B1, S2, LL, save_path=plot3d_path)
+        self.view.plot_3d_surface_interactive(B1, S2, LL, save_path=plot3d_interactive_path)
         self.view.plot_2d_contour(B1, S2, LL, save_path=contour_path)
+
+        # 5. Exibe os gráficos do Matplotlib
+        self.view.show_plots()
