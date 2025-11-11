@@ -22,6 +22,3 @@ dist/
 *.ntvs*
 *.njsproj
 *.sln
-
-# Pasta de resultados
-results/
