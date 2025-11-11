@@ -47,7 +47,8 @@ class PlotView:
         )
         
         if save_path:
-            fig.write_html(save_path)
+            config = {'responsive': True}
+            fig.write_html(save_path, include_plotlyjs='cdn', config=config)
             print(f"Gráfico 3D (interativo) salvo em: {save_path}")
 
     def show_plots(self):

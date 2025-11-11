@@ -7,7 +7,7 @@ Ao ser executado, o script gera os resultados e os salva na pasta `results/`.
 ## Saídas Geradas
 
 - **Gráfico 3D Estático (`.png`):** Uma imagem da superfície de verossimilhança.
-- **Gráfico 3D Interativo (`.html`):** Um arquivo HTML com um gráfico 3D que permite rotação e zoom, gerado com Plotly.
+- **Gráfico 3D Interativo (`.html`):** Um arquivo HTML com um gráfico 3D que permite rotação e zoom, gerado com Plotly. O gráfico é responsivo para se adaptar a telas de dispositivos móveis e requer conexão com a internet para funcionar.
 - **Gráfico de Contorno 2D (`.png`):** Um mapa de contorno da superfície.
 - **Dados da Grade (`.npz`):** Um arquivo binário contendo os arrays (B1, S2, LL) usados para gerar os gráficos.
 
