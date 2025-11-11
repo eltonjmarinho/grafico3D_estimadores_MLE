@@ -1,0 +1,27 @@
+# Arquivos de ambiente virtual
+venv/
+*.venv/
+env/
+ENV/
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de distribuição
+build/
+dist/
+*.egg-info/
+
+# Arquivos de IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Pasta de resultados
+results/
